@@ -1,9 +1,18 @@
 if (window.location.href.indexOf('register') !== -1) {
+	const name = document.getElementById('name');
 	const email = document.getElementById('email');
 	const password = document.getElementById('password');
 	const confirmPassword = document.getElementById('confirmPassword');
 
 	const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	name.addEventListener('change', function () {
+		if (name.value === '') {
+			setErrorFor(name, 'Please enter your name.');
+		} else {
+			setSuccessFor(name);
+		}
+	});
 
 	email.addEventListener('change', function () {
 		if (!email.value.match(emailPattern)) {

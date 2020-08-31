@@ -1,11 +1,17 @@
 extends common/index
 block content
 
-  #home-container.text-dark
+  #home-container.text-dark.bg-white.p-4.shadow-lg.rounded
     h1.my-2.font-weight-bold Welcome!
-    p.mb-3
-      | This is home page. Log in to access your profile!
+    
+    if successMsg
+      p.mb-3.text-success= successMsg      
+    
     div.info.mb-4
-      | This's a simple Nodejs appplication using passprort-local, passport-google-oauth20, passport-facebook to authenticate users.
-    a.py-2.px-4.rounded.text-decoration-none(href="/auth/login")
-      | Log in
+      | This's a simple Nodejs appplication using passprort-local, passport-google, passport-facebook to authenticate users.
+    div.d-flex
+      a.buttons.btn.btn-outline-info.text-decoration-none(href="/auth/login")
+        | Log in
+      if user
+        a.buttons.ml-auto.btn.btn-outline-success.rounded.text-decoration-none(href="/users/profile")
+          | Profile

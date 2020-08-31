@@ -21,15 +21,8 @@ body {
 	width: 21.5rem; /* 348px */
 }
 
-#home-container a {
-	border: 1px solid #26de81;
-	color: #666;
-	font-weight: bold;
-}
-
-#home-container a:hover {
-	background: #26de81;
-	color: #fff;
+#profile-container {
+	width: 31rem;
 }
 
 #home-container .info {
@@ -61,4 +54,8 @@ body {
 .card-header,
 .card-footer {
 	background: #fff;
+}
+
+.buttons {
+	width: 100px;
 }
