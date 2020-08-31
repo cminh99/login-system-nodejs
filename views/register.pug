@@ -1,0 +1,31 @@
+extends common/index
+block content
+
+  #signup-form.card.shadow-lg
+    h2.card-header.text-center.text-dark Sign up
+    .card-body.py-0
+      div.my-4
+        .row
+          .col
+            a.btn.btn-primary.btn-block.text-left.py-2(href="")
+              i.fa.fa-facebook.mx-2
+              span.ml-2 Facebook
+          .col
+            a.btn.btn-danger.btn-block.text-left.py-2(href="")
+              i.fa.fa-google.mx-2
+              span.ml-2 Google +
+      hr#or-separate.mt-0.my-4
+      //- p#messages.text-danger.text-center Email does not exits!
+      form#form.my-4(action="")
+        .form-group.my-3
+          input.form-control(type="text", id="email", name="email", placeholder="Email", required)
+          span#feedback
+        .form-group.my-3
+          input.form-control(type="password", id="password" name="password", placeholder="Password", required)
+          span#feedback
+        .form-group.my-3
+          input.form-control(type="password", id="confirmPassword", name="confirmPassword", placeholder="Confirm password", required)
+          span#feedback
+        button.btn.btn-success.btn-block.my-3.py-2(type="submit") Sign up
+    .card-footer.py-2.text-dark.text-center Already have an account? 
+      a.text-decoration-none(href="/auth/login") Log in!
