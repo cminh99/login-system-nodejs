@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./configs/db.config');
+require('./configs/passport.local');
 require('./configs/passport.google');
 
 const session = require('express-session');
@@ -17,6 +18,8 @@ app.set('views', './views');
 
 // middlewares
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(
 	session({
@@ -32,10 +35,11 @@ app.use(
 app.use((req, res, next) => {
 	res.locals.successMsg = req.flash('successMsg');
 	res.locals.errorMsg = req.flash('errorMsg');
+	res.locals.loginFail = req.flash('error');
 	next();
 });
 
-// initialize passport
+// initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
 

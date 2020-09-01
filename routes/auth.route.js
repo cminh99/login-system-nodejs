@@ -3,11 +3,25 @@ const passport = require('passport');
 
 const controller = require('../controllers/auth.controller');
 
-router.get('/login', controller.getLogin);
+// local
+router
+	.route('/login')
+	.get(controller.getLogin)
+	.post(
+		passport.authenticate('local', {
+			failureRedirect: '/auth/login',
+			failureFlash: true
+		}),
+		(req, res) => {
+			req.flash('successMsg', 'You are logged in!');
+			res.redirect('/');
+		}
+	);
 
-router.get('/logout', controller.getLogout);
-
-router.get('/register', controller.getRegister);
+router
+	.route('/register')
+	.get(controller.getRegister)
+	.post(controller.postRegister);
 
 // google
 router.get(
@@ -27,5 +41,8 @@ router.get(
 		res.redirect('/');
 	}
 );
+
+// logout
+router.get('/logout', controller.getLogout);
 
 module.exports = router;

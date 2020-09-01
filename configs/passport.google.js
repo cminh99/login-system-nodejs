@@ -14,8 +14,7 @@ passport.use(
 				const user = await User.findOne({ googleId: profile.id });
 
 				if (user) {
-					done(null, user);
-					return;
+					return done(null, user);
 				}
 
 				const newUser = new User({
@@ -30,7 +29,8 @@ passport.use(
 				await newUser.save();
 				done(null, newUser);
 			} catch (error) {
-				console.log('Error:' + error);
+				console.log(error);
+				return done(error);
 			}
 		}
 	)
