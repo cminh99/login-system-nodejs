@@ -2,6 +2,7 @@ require('dotenv').config();
 require('./configs/db.config');
 require('./configs/passport.local');
 require('./configs/passport.google');
+require('./configs/passport.facebook');
 
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -22,21 +23,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(
-	session({
-		secret: process.env.SECRET_STRING_SESSION,
-		resave: true,
-		saveUninitialized: true,
-		cookie: {
-			maxAge: 24 * 60 * 60 * 1000 * 3
-		}
-	})
+  session({
+    secret: process.env.SECRET_STRING_SESSION,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000 * 3
+    }
+  })
 );
 
 app.use((req, res, next) => {
-	res.locals.successMsg = req.flash('successMsg');
-	res.locals.errorMsg = req.flash('errorMsg');
-	res.locals.loginFail = req.flash('error');
-	next();
+  res.locals.successMsg = req.flash('successMsg');
+  res.locals.errorMsg = req.flash('errorMsg');
+  res.locals.loginFail = req.flash('error');
+  next();
 });
 
 // initialize Passport and restore authentication state, if any, from the session.
