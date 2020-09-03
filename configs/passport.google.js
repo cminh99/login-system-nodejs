@@ -8,7 +8,7 @@ passport.use(
       proxy: true,
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URI + '/auth/google/redirect'
+      callbackURL: process.env.CALLBACK_URL + '/auth/google/redirect'
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
