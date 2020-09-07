@@ -1,12 +1,12 @@
-# passport-authenticate-nodejs
+# login-system-nodejs
 
-Simple nodejs application that allows users to log in and sign up through their Google and Facebook accounts. This application uses the modules `passport-local`, ` passport-facebook`, `passport-google-oauth20` to authenticate the user.
+The simple Nodejs application allows users to log in and register through Google and Facebook accounts. This application uses the modules `passport-local`, ` passport-facebook`, `passport-google-oauth20` to authenticate the user.
 
 ### Usage
 
 #### Create an Application
 
-You must register an application with **Google** and **Facebook**. If you have not already done so, a new project can be created in the [Google Developers Console](https://console.developers.google.com/) and [Facebook For Developers](https://developers.facebook.com/). Your application will be issued a `CLIENT_ID/APP_ID` and `CLIENT_SECRET/APP_SECRET`, which need to be provided to the strategy. You will also need to configure a redirect URI which matches the route in your application.
+You must register an application with **Google** and **Facebook**. If you have not already done so, a new project can be created in the [Google Developers Console](https://console.developers.google.com/) and [Facebook For Developers](https://developers.facebook.com/). Your application will be issued a `CLIENT_ID/APP_ID` and `CLIENT_SECRET/APP_SECRET`, which need to be provided to the strategy.
 
 #### Configuration
 
@@ -25,8 +25,8 @@ APP_SECRET=your.facebook.app_secret
 Clone the repository and install dependencies.
 
 ```
-$ git clone https://github.com/nhcminh303/passport-authenticate-nodejs.git
-$ cd passport-authenticate-nodejs.git
+$ git clone https://github.com/nhcminh303/login-system-nodejs.git
+$ cd login-system-nodejs.git
 $ npm install
 $ npm start
 
