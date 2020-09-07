@@ -1,0 +1,29 @@
+extends layouts/index
+block content
+
+  #home-container.text-dark.bg-white.p-4.shadow-lg.rounded
+    h1.my-2.font-weight-bold Welcome!
+    
+    include partials/messages
+    
+    div.info.mb-4
+      p
+        | The simple Nodejs appplication using package 
+        strong passport.js 
+        | to authenticate the users.
+      p.mb-0
+        | The application using 
+        strong passport-local, passport-google-oauth20 
+        | and 
+        strong passport-facebook 
+        | strategies to authenticate the users.
+    div
+      div.d-flex
+        if !user
+          a.buttons.btn.btn-outline-info.text-decoration-none(href="/auth/login")
+            | Log in
+        else  
+          a.buttons.mr-auto.btn.btn-outline-warning.text-decoration-none(href="/auth/logout")
+            | Log out
+          a.buttons.btn.btn-outline-success.rounded.text-decoration-none(href="/users/profile")
+              | Profile

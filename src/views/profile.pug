@@ -1,0 +1,24 @@
+extends layouts/index
+block content
+
+  #profile-container.card.shadow-lg
+    .card-header
+      h2.mb-0.text-dark.float-left
+        | Profile
+      div.float-right
+        a.buttons.btn.btn-outline-info.mr-2(href="/")
+          | Home
+        a.buttons.btn.btn-outline-warning.ml-2(href="/auth/logout")
+          | Log out
+    .card-body
+      .row
+        .col-4.py-2.d-flex.justify-content-center
+          .avatar(style="width: 88px; height: 88px;")
+            img.border.rounded-circle(src= user.avatar, width="100%", height="100%", alt="")
+        .col-8.py-2
+          .form-inline.d-flex
+            label.w-25.font-weight-bold.text-dark.justify-content-start(for="") Name
+            input.w-75.form-control(type="text", value= user.name, disabled)
+          .form-inline.d-flex.mt-3
+            label.w-25.font-weight-bold.text-dark.justify-content-start(for="") Email
+            input.w-75.form-control(type="text", value= user.email, disabled)
