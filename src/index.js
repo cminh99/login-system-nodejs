@@ -5,7 +5,6 @@ require('./configs/passport.google');
 require('./configs/passport.facebook');
 
 const path = require('path');
-const morgan = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
@@ -25,7 +24,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(morgan('dev'));
 app.use(flash());
 app.use(
   session({
