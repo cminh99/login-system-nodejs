@@ -1,6 +1,5 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
 const User = require('../models/user.model');
 
 passport.use(
@@ -8,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `${process.env.CALLBACK_URI}/auth/google/redirect`
+      callbackURL: `${process.env.CALLBACK_URI}/auth/google/redirect`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -24,7 +23,7 @@ passport.use(
           avatar: profile.photos[0].value,
           googleId: profile.id,
           facebookId: null,
-          password: null
+          password: null,
         });
 
         await newUser.save();
@@ -35,12 +34,3 @@ passport.use(
     }
   )
 );
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id);
-  done(null, user);
-});

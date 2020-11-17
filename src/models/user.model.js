@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   googleId: String,
   facebookId: String,
-  avatar: String
+  avatar: String,
 });
 
 const User = mongoose.model('user', userSchema);

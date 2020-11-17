@@ -2,33 +2,33 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 
-class AuthController {
+module.exports = {
   // [GET] /
   getRedirectHome(req, res) {
     req.flash('success', 'You are logged in!');
     res.redirect('/');
-  }
+  },
 
   // [GET] /auth/login
   getLogin(req, res) {
     res.render('login', {
-      title: 'Log in'
+      title: 'Log in',
     });
-  }
+  },
 
   // [GET] /auth/logout
   getLogout(req, res) {
     req.logout();
     req.flash('success', 'You are logged out!');
     res.redirect('/');
-  }
+  },
 
   // [GET] /auth/register
   getRegister(req, res) {
     res.render('register', {
-      title: 'Sign up'
+      title: 'Sign up',
     });
-  }
+  },
 
   // [POST] /auth/register
   async postRegister(req, res) {
@@ -41,7 +41,7 @@ class AuthController {
           title: 'Sign up',
           errorMsg: 'Email already exists.',
           values: req.body,
-          existsEmail: true
+          existsEmail: true,
         });
         return;
       }
@@ -59,7 +59,5 @@ class AuthController {
     } catch (error) {
       console.log(error);
     }
-  }
-}
-
-module.exports = new AuthController();
+  },
+};

@@ -1,7 +1,6 @@
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-
 const authController = require('../controllers/auth.controller');
 
 // local
@@ -11,7 +10,7 @@ router
   .post(
     passport.authenticate('local', {
       failureRedirect: '/auth/login',
-      failureFlash: true
+      failureFlash: true,
     }),
     authController.getRedirectHome
   );
@@ -25,7 +24,7 @@ router
 router.get(
   '/google',
   passport.authenticate('google', {
-    scope: ['email', 'profile']
+    scope: ['email', 'profile'],
   })
 );
 
@@ -33,7 +32,7 @@ router.get(
   '/google/redirect',
   passport.authenticate('google', {
     failureRedirect: '/auth/login',
-    failureFlash: true
+    failureFlash: true,
   }),
   authController.getRedirectHome
 );
@@ -48,7 +47,7 @@ router.get(
   '/facebook/redirect',
   passport.authenticate('facebook', {
     failureRedirect: '/auth/login',
-    failureFlash: true
+    failureFlash: true,
   }),
   authController.getRedirectHome
 );

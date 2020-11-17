@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('./configs/db');
+require('./configs/db').connect();
 require('./configs/passport.local');
 require('./configs/passport.google');
 require('./configs/passport.facebook');
@@ -14,6 +14,7 @@ const indexRoutes = require('./routes/index.route');
 const authRoutes = require('./routes/auth.route');
 const userRoutes = require('./routes/user.route');
 
+const User = require('./models/user.model');
 const app = express();
 
 // Set up template engine
@@ -31,8 +32,8 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000 * 3
-    }
+      maxAge: 24 * 60 * 60 * 1000 * 3,
+    },
   })
 );
 app.use((req, res, next) => {
@@ -44,6 +45,16 @@ app.use((req, res, next) => {
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Serialize & Deserialize user
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  done(null, user);
+});
 
 // Routes
 app.use('/', indexRoutes);
